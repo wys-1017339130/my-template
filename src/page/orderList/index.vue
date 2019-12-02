@@ -26,10 +26,10 @@
         </li>
       </ul>
     </cube-scroll>
-     <div class="noclass" v-if="orderList.length==0">
-        <img src="../../assets/zanwushuju.png" />
-        <span>暂无数据</span>
-      </div>
+    <div class="noclass" v-if="orderList.length==0">
+      <img src="../../assets/zanwushuju.png" />
+      <span>暂无数据</span>
+    </div>
   </div>
 </template>
 <script>
@@ -56,7 +56,21 @@ export default {
     }
   },
   created() {
-    this.ScV7OrderList(true);
+    let typeState = this.$route.query.typeState;
+    if (!typeState) {
+      this.util.QbUserShopsList(this).then(data => {
+        if (data.Value && data.Value.length > 1) {
+          this.$router.push({
+            path: "/userShoplist",
+            query: { name: "orderList" }
+          });
+        } else {
+          this.ScV7OrderList(true);
+        }
+      });
+    } else {
+      this.ScV7OrderList(true);
+    }
   },
   methods: {
     //      加载更多

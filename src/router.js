@@ -1,9 +1,8 @@
 /* eslint-disable */
-const routes = [
-  {
+const routes = [{
     path: '*',
     redirect: '/login'
-  },{
+  }, {
     path: '/orderSure',
     component: () => import('./page/orderSure'),
     meta: {
@@ -34,15 +33,22 @@ const routes = [
   {
     path: '/orderInfo',
     component: () => import('./page/orderInfo'),
-    meta: { 
+    meta: {
       title: '订单详情'
     }
   },
   {
     path: '/returnGoods',
     component: () => import('./page/returnGoods'),
-    meta: { 
+    meta: {
       title: '退货详情'
+    }
+  },
+  {
+    path: '/userShoplist',
+    component: () => import('./page/userShoplist'),
+    meta: {
+      title: '选择店铺'
     }
   }
 ]

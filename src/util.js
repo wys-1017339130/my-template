@@ -171,7 +171,15 @@ function time_range(beginTime, endTime) {
     return false;
   }
 }
-
+const QbUserShopsList = (_this) => {
+  let p = new Promise((resolve, reject) => {
+    let json = {};
+    sendAjax(_this, json, "QbUserShopsList").then(res => {
+      resolve(res)
+    });
+  })
+  return p;
+}
 const sendAjax = (_this, post, i) => {
   let toast = null;
   if (!post.noload) {
@@ -463,6 +471,7 @@ function thousands(num) {
 }
 export default {
   sendAjax: sendAjax,
+  QbUserShopsList: QbUserShopsList,
   initLogin: initLogin,
   initShare: initShare,
   shareInfo: shareInfo,

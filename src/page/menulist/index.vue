@@ -250,14 +250,31 @@ export default {
   },
   created() {
     this.code = this.$route.query.code;
-    this.ScV7GetUserOpenId();
-    this.ScV7Goods();
+    let typeState = this.$route.query.typeState;
+    if (!typeState) {
+      this.util.QbUserShopsList(this).then(data => {
+        if (data.Value && data.Value.length > 1) {
+          return this.$router.push({
+            path: "/userShoplist",
+            query: { name: "menulist" }
+          });
+        } else {
+          this.initPage();
+        }
+      });
+    } else {
+      this.initPage();
+    }
   },
   mounted() {
     // 窗口大小改变，改变商品列高度
     window.addEventListener("resize", this.watchHei, false);
   },
   methods: {
+    initPage() {
+      this.ScV7GetUserOpenId();
+      this.ScV7Goods();
+    },
     cancelSearch() {
       this.filterword = "";
       this.searchArr = [];

@@ -8,8 +8,12 @@ import {
   List,
   ActionSheet,
   Field,
+  RadioGroup,
+  Radio,
   Button
 } from 'vant'
+Vue.use(RadioGroup)
+Vue.use(Radio)
 Vue.use(Button)
 Vue.use(Field)
 Vue.use(List)

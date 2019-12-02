@@ -24,19 +24,7 @@ export default {
   },
   created() {},
   methods: {
-    QbUserShopsList(){
-let json = {
-      };
-      this.util.sendAjax(this, json, "QbUserShopsList").then(res => {
-      });
-    },
-        ChangeShops(){
-let json = {
-  ShopId:id
-      };
-      this.util.sendAjax(this, json, "ChangeShops").then(res => {
-      });
-    },
+    
     QbV4Login() {
       let json = {
         Phone: this.Phone,
@@ -44,8 +32,16 @@ let json = {
       };
       this.util.sendAjax(this, json, "QbV4Login").then(res => {
         window.localStorage.setItem("Guid", res.Value.Guid);
-        this.$router.go(-1);
-        // this.$router.push("menulist");
+        this.util.QbUserShopsList(this).then(data => {
+          if (data.Value && data.Value.length > 1) {
+            this.$router.push({
+              path: "/userShoplist",
+              query: { name: "menulist" }
+            });
+          } else {
+            this.$router.go(-1);
+          }
+        });
       });
     }
   }

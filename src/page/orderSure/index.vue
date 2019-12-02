@@ -163,15 +163,17 @@ export default {
       });
     },
     jump() {
-      this.$toast.loading(
-        {
+      this.$toast.loading({
         message: "请稍候",
         loadingType: "spinner"
       });
       setTimeout(() => {
         this.$toast.clear();
         sessionStorage.removeItem("cart");
-        this.$router.replace("/orderList");
+        this.$router.replace({
+          path: "/orderList",
+          query: { typeState: 1 }
+        });
       }, 2500);
     }
   }
