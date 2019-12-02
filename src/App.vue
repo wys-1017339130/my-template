@@ -5,9 +5,13 @@
 </template>
 
 <script>
+import remoteLoad from './remoteLoad.js'
 export default {
-  name: 'app'
-}
+  name: "app",
+  async created() {
+    await remoteLoad("https://res.wx.qq.com/open/js/jweixin-1.3.2.js");
+  }
+};
 </script>
 
 <style>

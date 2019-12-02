@@ -96,7 +96,7 @@ const initLogin = (_this, cmd, code) => {
     if (code != null && code != "" && code != undefined) {
       var json = {
         Code: code,
-        yqm: window.localStorage.getItem("yaoqingma")
+        yqm: ''
       };
       sendAjax(_this, json, isWx() ? cmd : cmd)
         .then(res => {
@@ -106,7 +106,7 @@ const initLogin = (_this, cmd, code) => {
       let href = window.location.href.indexOf('?') == -1 ? window.location.href + '?type=1' : window.location.href
       if (isWx()) {
         window.location.href =
-          "https://d.zsfcy.cn/WxAuth.html?backUrl=" +
+          "https://d.zsfcy.cn/HnWxAuth.html?backUrl=" +
           encodeURIComponent(href);
       } else {
         window.location.href =
@@ -203,7 +203,7 @@ const sendAjax = (_this, post, i) => {
         if (!post.noload) {
           toast.clear();
         }
-        var arr = ['FmUserBuyLog', 'FmQLingQuMjQuan', 'BDSH5Login', 'BDSHbQian', 'BDSH5WxAuth'];
+        var arr = ['ScV7GetUserOpenId'];
         console.log(res.data)
         switch (res.data.State) {
           case 0:
@@ -214,6 +214,7 @@ const sendAjax = (_this, post, i) => {
               message: res.data.Msg
             })
             window.localStorage.removeItem('Guid');
+            _this.$router.push("/login");
             break
           case 5:
             resolve(res.data)
@@ -427,6 +428,30 @@ const charToHtml = (str) => {
     str = str.replace(/&#039;/g, ' ');
   }
   return str;
+}
+export function formatDate(date, fmt) {
+  if (/(y+)/.test(fmt)) {
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+  }
+
+  let o = {
+    'M+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours(),
+    'm+': date.getMinutes()
+  }
+
+  for (let k in o) {
+    if (new RegExp(`(${k})`).test(fmt)) {
+      let str = o[k] + ''
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str))
+    }
+  }
+  return fmt
+}
+
+function padLeftZero(str) {
+  return ('00' + str).substr(str.length)
 }
 
 function thousands(num) {

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import './cube-ui.js'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 import util from './util'
@@ -16,7 +17,7 @@ const router = new VueRouter({
   // mode: routerMode,
   strict: process.env.NODE_ENV !== 'production',
   // 滚动行为  只在mode=history  起作用
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     } else {
@@ -35,7 +36,12 @@ router.beforeEach((to, from, next) => {
   if (title) {
     document.title = title
   }
-  next()
+  // next((vm) => {
+  //   if (from.path == '/') {
+  //     vm.$router.replace('/menulist');
+  //   }
+  // })
+  next();
 })
 new Vue({
   router,

@@ -1,0 +1,20 @@
+.border-1px(@color) {
+  position: relative;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid @color;
+    content: ''
+  }
+}
+
+.bg-image(@url) {
+  background-image: url(@url)
+}
+@bgColor:#6384fe;
+@fontColor:#6384fe;
+@newBgcolor:#6384fe;
+@newColor:#6384fe;

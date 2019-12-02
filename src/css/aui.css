@@ -17,6 +17,43 @@
   -webkit-box-pack: center;
   -ms-flex-pack: center;
 }
+.noclass {
+  width: 85.5px;
+  height: 84.5px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}
+
+.noclass img {
+  width: 85.5x;
+  height: 84.5px;
+}
+.my_text_2 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.my_text_1 {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
 html {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
